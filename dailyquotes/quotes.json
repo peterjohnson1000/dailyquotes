@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "name": "Motivational",
+        "allQuotes": [
+            {
+                "id": "1",
+                "quote": "The only true wisdom is in knowing you know nothing."
+            },
+            {
+                "id": "2",
+                "quote": "An unexamined life is not worth living."
+            },
+            {
+                "id": "3",
+                "quote": "I cannot teach anybody anything. I can only make them think."
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Love",
+        "allQuotes": [
+            {
+                "id": "1",
+                "quote": "The only true wisdom is in knowing you know nothing."
+            },
+            {
+                "id": "2",
+                "quote": "An unexamined life is not worth living."
+            },
+            {
+                "id": "3",
+                "quote": "I cannot teach anybody anything. I can only make them think."
+            }
+        ]
+    }
+]
