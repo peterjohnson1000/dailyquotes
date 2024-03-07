@@ -61,10 +61,23 @@ struct MotivationalView: View {
     var body: some View {
         List {
             ForEach(quotes.allQuotes) {eachQuote in
-                Text(eachQuote.quote)
-                    .lineLimit(1)
+                NavigationLink(value: eachQuote)
+                {
+                    Text(eachQuote.quote)
+                        .lineLimit(1)
+                }
             }
         }
+        .navigationDestination(for: Quote.self) {data in
+            DetailedQuoteView(quotes: data)
+        }
+    }
+}
+
+struct DetailedQuoteView: View {
+    let quotes: Quote
+    var body: some View {
+        Text(quotes.quote)
     }
 }
 
