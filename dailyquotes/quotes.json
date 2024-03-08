@@ -3,36 +3,112 @@
         "id": "1",
         "name": "Motivational",
         "allQuotes": [
-            {
-                "id": "1",
-                "quote": "The only true wisdom is in knowing you know nothing."
-            },
-            {
-                "id": "2",
-                "quote": "An unexamined life is not worth living."
-            },
-            {
-                "id": "3",
-                "quote": "I cannot teach anybody anything. I can only make them think."
-            }
-        ]
+                {
+                    "id": "1",
+                    "quote": "Believe you can and you're halfway there.",
+                    "author": "Theodore Roosevelt"
+                },
+                {
+                    "id": "2",
+                    "quote": "The only way to do great work is to love what you do.",
+                    "author": "Steve Jobs"
+                },
+                {
+                    "id": "3",
+                    "quote": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+                    "author": "Winston Churchill"
+                },
+                {
+                    "id": "4",
+                    "quote": "Your limitation—it's only your imagination.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "5",
+                    "quote": "Push yourself, because no one else is going to do it for you.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "6",
+                    "quote": "Great things never come from comfort zones.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "7",
+                    "quote": "Dream it. Wish it. Do it.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "8",
+                    "quote": "Success doesn’t just find you. You have to go out and get it.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "9",
+                    "quote": "The harder you work for something, the greater you’ll feel when you achieve it.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "10",
+                    "quote": "Dream bigger. Do bigger.",
+                    "author": "Unknown"
+                }
+            ]
     },
     {
         "id": "2",
         "name": "Love",
         "allQuotes": [
-            {
-                "id": "1",
-                "quote": "The only true wisdom is in knowing you know nothing."
-            },
-            {
-                "id": "2",
-                "quote": "An unexamined life is not worth living."
-            },
-            {
-                "id": "3",
-                "quote": "I cannot teach anybody anything. I can only make them think."
-            }
-        ]
+                {
+                    "id": "1",
+                    "quote": "Love is composed of a single soul inhabiting two bodies.",
+                    "author": "Aristotle"
+                },
+                {
+                    "id": "2",
+                    "quote": "The best thing to hold onto in life is each other.",
+                    "author": "Audrey Hepburn"
+                },
+                {
+                    "id": "3",
+                    "quote": "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+                    "author": "Dr. Seuss"
+                },
+                {
+                    "id": "4",
+                    "quote": "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
+                    "author": "Lao Tzu"
+                },
+                {
+                    "id": "5",
+                    "quote": "To love is nothing. To be loved is something. But to love and be loved, that’s everything.",
+                    "author": "T. Tolis"
+                },
+                {
+                    "id": "6",
+                    "quote": "I have died every day waiting for you. Darling, don’t be afraid. I have loved you for a thousand years. I’ll love you for a thousand more.",
+                    "author": "Christina Perri"
+                },
+                {
+                    "id": "7",
+                    "quote": "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.",
+                    "author": "Maya Angelou"
+                },
+                {
+                    "id": "8",
+                    "quote": "I wish I could turn back the clock. I’d find you sooner and love you longer.",
+                    "author": "Unknown"
+                },
+                {
+                    "id": "9",
+                    "quote": "You are my heart, my life, my one and only thought.",
+                    "author": "Conan Doyle"
+                },
+                {
+                    "id": "10",
+                    "quote": "The best love is the kind that awakens the soul and makes us reach for more, that plants a fire in our hearts and brings peace to our minds.",
+                    "author": "Nicholas Sparks"
+                }
+            ]
     }
 ]

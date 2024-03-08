@@ -5,6 +5,10 @@
 //  Created by Peter Johnson on 3/6/24.
 //
 
+// refactoring
+// json struct and json loader
+//
+
 import SwiftUI
 
 struct QuoteCategory: Codable, Identifiable, Hashable {
@@ -16,6 +20,7 @@ struct QuoteCategory: Codable, Identifiable, Hashable {
 struct Quote: Codable, Hashable, Identifiable {
     var id: String = UUID().uuidString
     var quote: String
+    var author: String
 }
 
 
@@ -38,16 +43,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(categories) { data in
-                    NavigationLink(value: data)
+                ForEach(categories) { category in
+                    NavigationLink(value: category)
                     {
-                        Text(data.name)
+                        Text(category.name)
                     }
                 }
             }
             .navigationTitle("Quotes Category")
-            .navigationDestination(for: QuoteCategory.self) {data in
-                MotivationalView(quotes: data)
+            .navigationDestination(for: QuoteCategory.self) { currentCategoryData in
+                MotivationalView(quotes: currentCategoryData)
             }
         }
         .onAppear {
@@ -60,24 +65,14 @@ struct MotivationalView: View {
     let quotes: QuoteCategory
     var body: some View {
         List {
-            ForEach(quotes.allQuotes) {eachQuote in
-                NavigationLink(value: eachQuote)
-                {
-                    Text(eachQuote.quote)
-                        .lineLimit(1)
-                }
+            ForEach(quotes.allQuotes) { eachQuote in
+                    VStack(alignment: .trailing) {
+                        Text("\"\(eachQuote.quote)\"")
+                        Text("- \(eachQuote.author)")
+                    }
             }
+            .padding(.vertical,5)
         }
-        .navigationDestination(for: Quote.self) {data in
-            DetailedQuoteView(quotes: data)
-        }
-    }
-}
-
-struct DetailedQuoteView: View {
-    let quotes: Quote
-    var body: some View {
-        Text(quotes.quote)
     }
 }
 
