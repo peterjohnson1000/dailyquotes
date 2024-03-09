@@ -70,6 +70,7 @@ struct MotivationalView: View {
                         Text("\"\(eachQuote.quote)\"")
                         Text("- \(eachQuote.author)")
                     }
+                    .navigationBarTitleDisplayMode(.inline)
             }
             .padding(.vertical,5)
         }
