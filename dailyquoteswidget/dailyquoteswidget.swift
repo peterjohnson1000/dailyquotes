@@ -9,22 +9,22 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+    func placeholder(in context: Context) -> DayEntry {
+        DayEntry(date: Date(), configuration: ConfigurationAppIntent())
     }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> DayEntry {
+        DayEntry(date: Date(), configuration: configuration)
     }
     
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<DayEntry> {
+        var entries: [DayEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let entry = DayEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
 
@@ -32,21 +32,28 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct DayEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
 }
 
 struct dailyquoteswidgetEntryView : View {
-    var entry: Provider.Entry
+    var entry: DayEntry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        ZStack {
+            ContainerRelativeShape()
+                .fill(.black)
+            VStack(alignment:.trailing) {
+                Text("\"You never know what you can do until you try.\"")
+                    .foregroundStyle(.white)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom,5)
+                Text("- \("William Cobbet")")
+                    .foregroundStyle(.white)
+                    .fontWeight(.light)
+            }
+            .padding(.vertical)
         }
     }
 }
@@ -59,6 +66,8 @@ struct dailyquoteswidget: Widget {
             dailyquoteswidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
+        .contentMarginsDisabled()
+        .supportedFamilies([.systemMedium])
     }
 }
 
@@ -79,6 +88,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     dailyquoteswidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    DayEntry(date: .now, configuration: .smiley)
+    DayEntry(date: .now, configuration: .starEyes)
 }

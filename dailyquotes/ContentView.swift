@@ -27,6 +27,8 @@ struct Quote: Codable, Hashable, Identifiable {
 struct ContentView: View {
     
     @State var categories: [QuoteCategory] = []
+//    @AppStorage var userCategorySelection: String
+    @State var isCategorySelected: Bool = false
     
     func loadQuotes() {
         if let url = Bundle.main.url(forResource: "quotes", withExtension: "json") {
@@ -40,20 +42,28 @@ struct ContentView: View {
         }
     }
     
+// NavigationLink(value: category) was used for individual quote view
+    
     var body: some View {
         NavigationStack {
             List {
                 ForEach(categories) { category in
-                    NavigationLink(value: category)
-                    {
+                    HStack {
                         Text(category.name)
+                        Spacer()
+                        Image(systemName: isCategorySelected ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(isCategorySelected ? .green : .gray)
+                            .onTapGesture {
+                                isCategorySelected.toggle()
+                            }
+                        
                     }
                 }
             }
             .navigationTitle("Quotes Category")
-            .navigationDestination(for: QuoteCategory.self) { currentCategoryData in
-                MotivationalView(quotes: currentCategoryData)
-            }
+//            .navigationDestination(for: QuoteCategory.self) { currentCategoryData in
+//                MotivationalView(quotes: currentCategoryData)
+//            }
         }
         .onAppear {
             loadQuotes()
