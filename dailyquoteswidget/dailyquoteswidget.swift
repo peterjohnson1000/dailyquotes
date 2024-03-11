@@ -39,6 +39,7 @@ struct DayEntry: TimelineEntry {
 
 struct dailyquoteswidgetEntryView : View {
     var entry: DayEntry
+    var category = UserDefaults.standard.string(forKey: "userCategorySelection") ?? "Motivational"
 
     var body: some View {
         ZStack {
@@ -46,6 +47,7 @@ struct dailyquoteswidgetEntryView : View {
                 .fill(.black)
             VStack(alignment:.trailing) {
                 Text("\"You never know what you can do until you try.\"")
+                Text(category)
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
                     .padding(.bottom,5)

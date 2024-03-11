@@ -14,6 +14,7 @@ import SwiftUI
 struct QuoteCategory: Codable, Identifiable, Hashable {
     var id: String = UUID().uuidString
     let name: String
+    var isSelected: Bool
     let allQuotes: [Quote]
 }
 
@@ -27,8 +28,7 @@ struct Quote: Codable, Hashable, Identifiable {
 struct ContentView: View {
     
     @State var categories: [QuoteCategory] = []
-//    @AppStorage var userCategorySelection: String
-    @State var isCategorySelected: Bool = false
+    @AppStorage("userCategorySelection") var userCategorySelection: String = "Motivational"
     
     func loadQuotes() {
         if let url = Bundle.main.url(forResource: "quotes", withExtension: "json") {
@@ -36,10 +36,22 @@ struct ContentView: View {
                 let data = try Data(contentsOf: url)
                 self.categories = try JSONDecoder().decode([QuoteCategory].self, from: data)
                 print(self.categories)
+                
+                if userCategorySelection.count > 0
+                {
+                    for index in categories.indices {
+                        if categories[index].name == userCategorySelection
+                        {
+                            categories[index].isSelected = true
+                        }
+                    }
+                }
+                
             } catch {
                 print("Error decoding JSON: \(error)")
             }
         }
+        print("User category selection: \(userCategorySelection)")
     }
     
 // NavigationLink(value: category) was used for individual quote view
@@ -47,16 +59,22 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(categories) { category in
+                ForEach(categories.indices, id:\.self) { index in
+                    let category = categories[index]
                     HStack {
                         Text(category.name)
                         Spacer()
-                        Image(systemName: isCategorySelected ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(isCategorySelected ? .green : .gray)
+                        Image(systemName: category.isSelected ? "checkmark.circle.fill" : "circle")
+                            .foregroundStyle(category.isSelected ? .green : .gray)
                             .onTapGesture {
-                                isCategorySelected.toggle()
+                                categories.indices.forEach { index in
+                                    categories[index].isSelected = false
+                                }
+                                
+                                categories[index].isSelected = true
+                                
+                                userCategorySelection = category.name
                             }
-                        
                     }
                 }
             }
