@@ -20,6 +20,7 @@
 		844966CB2B98E92800721A8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844966CA2B98E92800721A8E /* Assets.xcassets */; };
 		844966CE2B98E92800721A8E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844966CD2B98E92800721A8E /* Preview Assets.xcassets */; };
 		844966D52B98EB9E00721A8E /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 844966D42B98EB9D00721A8E /* quotes.json */; };
+		84D1F2692BA0C9840026D703 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D1F2682BA0C9840026D703 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,9 @@
 		844966CA2B98E92800721A8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		844966CD2B98E92800721A8E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		844966D42B98EB9D00721A8E /* quotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
+		84D1F2662BA0AE9E0026D703 /* dailyquotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dailyquotes.entitlements; sourceTree = "<group>"; };
+		84D1F2672BA0AF0C0026D703 /* dailyquoteswidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dailyquoteswidgetExtension.entitlements; sourceTree = "<group>"; };
+		84D1F2682BA0C9840026D703 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 				842064DA2B9CE01000AC04CC /* AppIntent.swift */,
 				842064DC2B9CE01800AC04CC /* Assets.xcassets */,
 				842064DE2B9CE01800AC04CC /* Info.plist */,
+				84D1F2682BA0C9840026D703 /* DataService.swift */,
 			);
 			path = dailyquoteswidget;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 		844966BA2B98E92300721A8E = {
 			isa = PBXGroup;
 			children = (
+				84D1F2672BA0AF0C0026D703 /* dailyquoteswidgetExtension.entitlements */,
 				844966C52B98E92300721A8E /* dailyquotes */,
 				842064D32B9CE01000AC04CC /* dailyquoteswidget */,
 				842064CE2B9CE00F00AC04CC /* Frameworks */,
@@ -128,6 +134,7 @@
 		844966C52B98E92300721A8E /* dailyquotes */ = {
 			isa = PBXGroup;
 			children = (
+				84D1F2662BA0AE9E0026D703 /* dailyquotes.entitlements */,
 				844966D42B98EB9D00721A8E /* quotes.json */,
 				844966C62B98E92300721A8E /* dailyquotesApp.swift */,
 				844966C82B98E92300721A8E /* ContentView.swift */,
@@ -251,6 +258,7 @@
 				842064DB2B9CE01000AC04CC /* AppIntent.swift in Sources */,
 				842064D72B9CE01000AC04CC /* dailyquoteswidgetLiveActivity.swift in Sources */,
 				842064D92B9CE01000AC04CC /* dailyquoteswidget.swift in Sources */,
+				84D1F2692BA0C9840026D703 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,8 +287,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = dailyquoteswidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 376BR2UZC9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dailyquoteswidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = dailyquoteswidget;
@@ -305,8 +315,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = dailyquoteswidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 376BR2UZC9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dailyquoteswidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = dailyquoteswidget;
@@ -451,9 +463,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = dailyquotes/dailyquotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dailyquotes/Preview Content\"";
+				DEVELOPMENT_TEAM = 376BR2UZC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -480,9 +494,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = dailyquotes/dailyquotes.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dailyquotes/Preview Content\"";
+				DEVELOPMENT_TEAM = 376BR2UZC9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -10,6 +10,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct QuoteCategory: Codable, Identifiable, Hashable {
     var id: String = UUID().uuidString
@@ -28,7 +29,8 @@ struct Quote: Codable, Hashable, Identifiable {
 struct ContentView: View {
     
     @State var categories: [QuoteCategory] = []
-    @AppStorage("userCategorySelection") var userCategorySelection: String = "Motivational"
+    
+    @AppStorage("userCategorySelection", store: UserDefaults(suiteName: "group.de.test.dailyquotes")) var userCategorySelection: String = "Motivational"
     
     func loadQuotes() {
         if let url = Bundle.main.url(forResource: "quotes", withExtension: "json") {
@@ -74,6 +76,8 @@ struct ContentView: View {
                                 categories[index].isSelected = true
                                 
                                 userCategorySelection = category.name
+                                
+                                WidgetCenter.shared.reloadTimelines(ofKind: "dailyquoteswidget")
                             }
                     }
                 }

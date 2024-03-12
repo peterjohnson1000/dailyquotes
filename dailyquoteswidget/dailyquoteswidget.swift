@@ -9,12 +9,15 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
+    
+    let data = DataService()
+    
     func placeholder(in context: Context) -> DayEntry {
-        DayEntry(date: Date(), configuration: ConfigurationAppIntent())
+        DayEntry(date: Date(), myString: data.cat(), configuration: ConfigurationAppIntent())
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> DayEntry {
-        DayEntry(date: Date(), configuration: configuration)
+        DayEntry(date: Date(), myString: data.cat(), configuration: configuration)
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<DayEntry> {
@@ -24,7 +27,7 @@ struct Provider: AppIntentTimelineProvider {
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = DayEntry(date: entryDate, configuration: configuration)
+            let entry = DayEntry(date: entryDate, myString: data.cat(), configuration: configuration)
             entries.append(entry)
         }
 
@@ -32,14 +35,21 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
+//func getMyString() -> String {
+//    let defaults = UserDefaults(suiteName:"group.de.test.dailyquotes")
+//    print( defaults!.string(forKey: "userCategorySelection")!)
+//    return defaults?.string(forKey: "userCategorySelection") ?? "No Sting"
+//}
+
 struct DayEntry: TimelineEntry {
     let date: Date
+    let myString: String
     let configuration: ConfigurationAppIntent
 }
 
 struct dailyquoteswidgetEntryView : View {
     var entry: DayEntry
-    var category = UserDefaults.standard.string(forKey: "userCategorySelection") ?? "Motivational"
+    let data = DataService()
 
     var body: some View {
         ZStack {
@@ -47,7 +57,7 @@ struct dailyquoteswidgetEntryView : View {
                 .fill(.black)
             VStack(alignment:.trailing) {
                 Text("\"You never know what you can do until you try.\"")
-                Text(category)
+                Text(data.cat())
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
                     .padding(.bottom,5)
@@ -56,6 +66,10 @@ struct dailyquoteswidgetEntryView : View {
                     .fontWeight(.light)
             }
             .padding(.vertical)
+        }
+        .onAppear {
+            // Trigger data update when the widget appears
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 }
@@ -90,6 +104,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     dailyquoteswidget()
 } timeline: {
-    DayEntry(date: .now, configuration: .smiley)
-    DayEntry(date: .now, configuration: .starEyes)
+    DayEntry(date: .now, myString: "test", configuration: .smiley)
+    DayEntry(date: .now, myString: "test", configuration: .starEyes)
 }
