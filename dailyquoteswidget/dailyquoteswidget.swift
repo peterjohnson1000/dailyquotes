@@ -35,15 +35,9 @@ struct Provider: AppIntentTimelineProvider {
     }
 }
 
-//func getMyString() -> String {
-//    let defaults = UserDefaults(suiteName:"group.de.test.dailyquotes")
-//    print( defaults!.string(forKey: "userCategorySelection")!)
-//    return defaults?.string(forKey: "userCategorySelection") ?? "No Sting"
-//}
-
 struct DayEntry: TimelineEntry {
     let date: Date
-    let myString: String
+    let myString: Int
     let configuration: ConfigurationAppIntent
 }
 
@@ -56,8 +50,10 @@ struct dailyquoteswidgetEntryView : View {
             ContainerRelativeShape()
                 .fill(.black)
             VStack(alignment:.trailing) {
-                Text("\"You never know what you can do until you try.\"")
-                Text(data.cat())
+//                Text("\"You never know what you can do until you try.\"")
+//                Text("\(data.categories[0].allQuotes[0].quote)")
+//                Text("\(data.count)")
+                Text("\(data.cat())")
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
                     .padding(.bottom,5)
@@ -104,6 +100,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     dailyquoteswidget()
 } timeline: {
-    DayEntry(date: .now, myString: "test", configuration: .smiley)
-    DayEntry(date: .now, myString: "test", configuration: .starEyes)
+    DayEntry(date: .now, myString: 5, configuration: .smiley)
+    DayEntry(date: .now, myString: 5, configuration: .starEyes)
 }

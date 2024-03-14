@@ -31,6 +31,7 @@ struct ContentView: View {
     @State var categories: [QuoteCategory] = []
     
     @AppStorage("userCategorySelection", store: UserDefaults(suiteName: "group.de.test.dailyquotes")) var userCategorySelection: String = "Motivational"
+
     
     func loadQuotes() {
         if let url = Bundle.main.url(forResource: "quotes", withExtension: "json") {
@@ -48,6 +49,15 @@ struct ContentView: View {
                         }
                     }
                 }
+                
+                // Save categories to UserDefaults
+                if let encoded = try? JSONEncoder().encode(self.categories) {
+                    UserDefaults(suiteName: "group.de.test.dailyquotes")?.set(encoded, forKey: "categories")
+                    print(encoded)
+                }
+                
+           
+                
                 
             } catch {
                 print("Error decoding JSON: \(error)")
