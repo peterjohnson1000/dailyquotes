@@ -37,29 +37,32 @@ struct Provider: AppIntentTimelineProvider {
 
 struct DayEntry: TimelineEntry {
     let date: Date
-    let myString: Int
+    let myString: String
     let configuration: ConfigurationAppIntent
 }
 
 struct dailyquoteswidgetEntryView : View {
     var entry: DayEntry
     let data = DataService()
+    var quoteCode: Int = 0
 
     var body: some View {
         ZStack {
             ContainerRelativeShape()
                 .fill(.black)
             VStack(alignment:.trailing) {
-//                Text("\"You never know what you can do until you try.\"")
-//                Text("\(data.categories[0].allQuotes[0].quote)")
-//                Text("\(data.count)")
-                Text("\(data.cat())")
-                    .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom,5)
-                Text("- \("William Cobbet")")
-                    .foregroundStyle(.white)
-                    .fontWeight(.light)
+                ForEach(data.categories) { category in
+                    if category.name == data.cat()
+                    {
+                        Text("\(category.allQuotes[data.pickRandomQuote(lengthOfAllQuotes: category.allQuotes.count)].quote)")
+                            .foregroundStyle(.white)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom,5)
+                        Text("~ \(category.allQuotes[data.pickRandomQuote(lengthOfAllQuotes: category.allQuotes.count)].author)")
+                            .foregroundStyle(.white)
+                            .fontWeight(.light)
+                    }
+                }
             }
             .padding(.vertical)
         }
@@ -100,6 +103,6 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     dailyquoteswidget()
 } timeline: {
-    DayEntry(date: .now, myString: 5, configuration: .smiley)
-    DayEntry(date: .now, myString: 5, configuration: .starEyes)
+    DayEntry(date: .now, myString: "test", configuration: .smiley)
+    DayEntry(date: .now, myString: "test", configuration: .starEyes)
 }

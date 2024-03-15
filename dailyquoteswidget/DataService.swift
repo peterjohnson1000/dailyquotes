@@ -21,43 +21,37 @@ struct Quote: Codable, Hashable, Identifiable {
     var author: String
 }
 
-struct Visitors: Codable {
-    var count: Int
-}
-
-
 class DataService {
-    @State private var categories: [QuoteCategory] = []
-//    @State private var count: Visitors = Visitors(count: 0)
-    var count: Int = 0
+    
+    var categories: [QuoteCategory] = []
     
     @AppStorage("userCategorySelection", store: UserDefaults(suiteName: "group.de.test.dailyquotes")) private var userCategorySelection: String = "Motivational"
     
-    // Initialize the DataService asynchronously
     init() {
-        initializeAsync()
+        loadJSONData()
     }
     
-    func initializeAsync() {
-        print("hi")
-         Task {
-             do {
-                 let url = URL(string: "")!
-                 let (data, _) = try await URLSession.shared.data(from: url)
-                 
-                 if let responseString = String(data: data, encoding: .utf8), let count = Int(responseString) {
-                     self.count = count
-                     print("DataService initialized with count: \(self.count)")
-                 } else {
-                     print("Error: Invalid response format")
-                 }
-             } catch {
-                 print("Error initializing DataService: \(error)")
-             }
-         }
-     }
-    
-    func cat() -> Int {
-        return count
+    func cat() -> String {
+        loadJSONData()
+        return userCategorySelection
     }
+    
+    func pickRandomQuote(lengthOfAllQuotes: Int) -> Int {
+        let randomQuote = Int.random(in: 0..<lengthOfAllQuotes)
+        return randomQuote
+    }
+    
+    func loadJSONData() {
+        if let url = Bundle(for: type(of: self)).url(forResource: "quotes", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                self.categories = try JSONDecoder().decode([QuoteCategory].self, from: data)
+                print("fkg data \(self.categories)")
+            }
+            catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }
+    }
+    
 }
