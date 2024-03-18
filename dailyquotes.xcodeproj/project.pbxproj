@@ -15,6 +15,8 @@
 		842064DB2B9CE01000AC04CC /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842064DA2B9CE01000AC04CC /* AppIntent.swift */; };
 		842064DD2B9CE01800AC04CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842064DC2B9CE01800AC04CC /* Assets.xcassets */; };
 		842064E12B9CE01800AC04CC /* dailyquoteswidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 842064CD2B9CE00F00AC04CC /* dailyquoteswidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		844523432BA7767C0078B1A8 /* QuoteDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844523422BA7767C0078B1A8 /* QuoteDataModel.swift */; };
+		844523452BA77AE30078B1A8 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844523442BA77AE30078B1A8 /* Quote.swift */; };
 		844966C72B98E92300721A8E /* dailyquotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844966C62B98E92300721A8E /* dailyquotesApp.swift */; };
 		844966C92B98E92300721A8E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844966C82B98E92300721A8E /* ContentView.swift */; };
 		844966CB2B98E92800721A8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844966CA2B98E92800721A8E /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 		842064DA2B9CE01000AC04CC /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		842064DC2B9CE01800AC04CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842064DE2B9CE01800AC04CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		844523422BA7767C0078B1A8 /* QuoteDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDataModel.swift; sourceTree = "<group>"; };
+		844523442BA77AE30078B1A8 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		844966C32B98E92300721A8E /* dailyquotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dailyquotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844966C62B98E92300721A8E /* dailyquotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dailyquotesApp.swift; sourceTree = "<group>"; };
 		844966C82B98E92300721A8E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,10 +141,12 @@
 		844966C52B98E92300721A8E /* dailyquotes */ = {
 			isa = PBXGroup;
 			children = (
-				844966D42B98EB9D00721A8E /* quotes.json */,
+				847FD6C02BA8A71700325B7C /* DataService */,
+				847FD6BF2BA8A6FC00325B7C /* Views */,
+				847FD6BE2BA8A6E900325B7C /* ViewModels */,
+				847FD6BD2BA8A6DF00325B7C /* Models */,
 				84D1F2662BA0AE9E0026D703 /* dailyquotes.entitlements */,
 				844966C62B98E92300721A8E /* dailyquotesApp.swift */,
-				844966C82B98E92300721A8E /* ContentView.swift */,
 				844966CA2B98E92800721A8E /* Assets.xcassets */,
 				844966CC2B98E92800721A8E /* Preview Content */,
 			);
@@ -153,6 +159,38 @@
 				844966CD2B98E92800721A8E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		847FD6BD2BA8A6DF00325B7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				844523442BA77AE30078B1A8 /* Quote.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		847FD6BE2BA8A6E900325B7C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				844523422BA7767C0078B1A8 /* QuoteDataModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		847FD6BF2BA8A6FC00325B7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				844966C82B98E92300721A8E /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		847FD6C02BA8A71700325B7C /* DataService */ = {
+			isa = PBXGroup;
+			children = (
+				844966D42B98EB9D00721A8E /* quotes.json */,
+			);
+			path = DataService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +308,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844523452BA77AE30078B1A8 /* Quote.swift in Sources */,
 				844966C92B98E92300721A8E /* ContentView.swift in Sources */,
+				844523432BA7767C0078B1A8 /* QuoteDataModel.swift in Sources */,
 				844966C72B98E92300721A8E /* dailyquotesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

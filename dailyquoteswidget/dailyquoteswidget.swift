@@ -44,7 +44,6 @@ struct DayEntry: TimelineEntry {
 struct dailyquoteswidgetEntryView : View {
     var entry: DayEntry
     let data = DataService()
-    var quoteCode: Int = 0
 
     var body: some View {
         ZStack {
@@ -54,17 +53,20 @@ struct dailyquoteswidgetEntryView : View {
                 ForEach(data.categories) { category in
                     if category.name == data.cat()
                     {
-                        Text("\(category.allQuotes[data.pickRandomQuote(lengthOfAllQuotes: category.allQuotes.count)].quote)")
+                        let randomQuoteIndex = data.pickRandomQuote(lengthOfAllQuotes: category.allQuotes.count)
+                        
+                        Text("\(category.allQuotes[randomQuoteIndex].quote)")
                             .foregroundStyle(.white)
                             .multilineTextAlignment(.center)
                             .padding(.bottom,5)
-                        Text("~ \(category.allQuotes[data.pickRandomQuote(lengthOfAllQuotes: category.allQuotes.count)].author)")
+                        
+                        Text("~ \(category.allQuotes[randomQuoteIndex].author)")
                             .foregroundStyle(.white)
                             .fontWeight(.light)
                     }
                 }
             }
-            .padding(.vertical)
+            .padding()
         }
         .onAppear {
             // Trigger data update when the widget appears
@@ -100,7 +102,7 @@ extension ConfigurationAppIntent {
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     dailyquoteswidget()
 } timeline: {
     DayEntry(date: .now, myString: "test", configuration: .smiley)
