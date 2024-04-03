@@ -23,14 +23,18 @@ struct Provider: AppIntentTimelineProvider {
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<DayEntry> {
         var entries: [DayEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // Get the current date
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = DayEntry(date: entryDate, myString: data.cat(), configuration: configuration)
-            entries.append(entry)
-        }
+        
+        // Get the start of the current day (midnight)
+        let startOfDay = Calendar.current.startOfDay(for: currentDate)
+        
+        // Create an entry for midnight of the current day
+        let entryDate = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        let entry = DayEntry(date: entryDate, myString: data.cat(), configuration: configuration)
+        entries.append(entry)
 
+        // Return the timeline with a single entry for the next midnight
         return Timeline(entries: entries, policy: .atEnd)
     }
 }

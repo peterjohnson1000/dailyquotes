@@ -24,9 +24,19 @@ class QuoteDataModel: ObservableObject {
             do {
                 let data = try Data(contentsOf: url)
                 self.categories = try JSONDecoder().decode([QuoteCategory].self, from: data)
+                encodeJSONData()
             } catch {
                 print("Error decoding JSON: \(error)")
             }
+        }
+    }
+    
+    private func encodeJSONData() {
+        if let encodedData = try? JSONEncoder().encode(categories) {
+//            UserDefaults.standard.setValue(encodedData, forKey: "fullData")
+            UserDefaults(suiteName: "group.de.test.dailyquotes")?.setValue(encodedData, forKey: "fullData")
+            print("encodedData")
+            print(encodedData)
         }
     }
     

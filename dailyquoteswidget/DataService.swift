@@ -28,11 +28,11 @@ class DataService {
     @AppStorage("userCategorySelection", store: UserDefaults(suiteName: "group.de.test.dailyquotes")) private var userCategorySelection: String = "Motivational"
     
     init() {
-        loadJSONData()
+//        loadJSONData()
+        decodeJSONData()
     }
     
     func cat() -> String {
-        loadJSONData()
         return userCategorySelection
     }
     
@@ -41,12 +41,12 @@ class DataService {
         return randomQuote
     }
     
+    // if reading data from a separate JSON file the below code can be used.
     func loadJSONData() {
         if let url = Bundle(for: type(of: self)).url(forResource: "quotes", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 self.categories = try JSONDecoder().decode([QuoteCategory].self, from: data)
-                print("fkg data \(self.categories)")
             }
             catch {
                 print("Error decoding JSON: \(error)")
@@ -54,4 +54,13 @@ class DataService {
         }
     }
     
+    func decodeJSONData() {
+        guard 
+            let decodedData = UserDefaults(suiteName: "group.de.test.dailyquotes")?.data(forKey: "fullData"),
+            let fullData = try? JSONDecoder().decode([QuoteCategory].self, from: decodedData)
+        else { return }
+        
+        self.categories = fullData
+    }
+
 }
