@@ -6,7 +6,7 @@ And I love reading them so I though why not make an app that just does that.
 The main requirements that I had in mind was:
 - Super simple interface.
 - Users should be able to select from a predefined set of categories.
-- A minimalist widget that clearly displays a quote along with the autor name and updates every day.
+- A minimalist widget that clearly displays a quote along with the author name and updates every day.
 
 ## Widget Screen
 Every day at 12:00 AM the app automaticaly picks a new quote from the category that the user has selected 
