@@ -8,6 +8,9 @@ The main requirements that I had in mind was:
 - Users should be able to select from a predefined set of categories.
 - A minimalist widget that clearly displays a quote along with the author name and updates every day.
 
+# Architecture
+<img src="https://github.com/peterjohnson1000/dailyquotes/assets/53271626/c1c3803f-ac3c-4617-bce7-9a6d43672405" width="500">
+
 ## Widget Screen
 Every day at 12:00 AM the app automaticaly picks a new quote from the category that the user has selected 
 
